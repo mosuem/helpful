@@ -1,3 +1,7 @@
+## 0.1.3
+
+- Tested automated firehose commit pinning via job.workflow_sha.
+
 ## 0.1.2
 
 - Tested caller-managed custom build step with pre-built archive.

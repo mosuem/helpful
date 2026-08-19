@@ -23,7 +23,8 @@ jobs:
       - name: Package archive
         run: |
           mkdir -p output
-          dart pub publish --to-archive=output/helpful-0.1.2.tar.gz
+          VERSION=$(grep '^version:' pubspec.yaml | awk '{print $2}')
+          dart pub publish --to-archive="output/helpful-${VERSION}.tar.gz"
       - name: Upload pre-built package archive
         uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392 # v4.0.0
         with:
