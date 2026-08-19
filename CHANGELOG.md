@@ -1,3 +1,7 @@
+## 0.1.4
+
+- Tested dart install migration in publish workflow.
+
 ## 0.1.3
 
 - Tested automated firehose commit pinning via job.workflow_sha.
