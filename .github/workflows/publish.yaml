@@ -12,6 +12,7 @@ jobs:
     uses: dart-lang/ecosystem/.github/workflows/publish.yaml@publish-provenance-support
     with:
       provenance: true
+      firehose_ref: publish-provenance-support
     permissions:
       id-token: write
       pull-requests: write
