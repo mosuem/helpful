@@ -1,3 +1,7 @@
+## 0.1.2
+
+- Tested caller-managed custom build step with pre-built archive.
+
 ## 0.1.1
 
 - Added GitHub Actions publish workflow with provenance support.

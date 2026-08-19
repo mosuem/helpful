@@ -8,10 +8,34 @@ on:
     tags: [ 'v[0-9]+.[0-9]+.[0-9]+*' ]
 
 jobs:
+  build:
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+      - uses: dart-lang/setup-dart@65eb853c7ba17dde3be364c3d2858773e7144260
+      - name: Build & validate
+        run: |
+          dart pub get
+          dart test
+      - name: Package archive
+        run: |
+          mkdir -p output
+          dart pub publish --to-archive=output/helpful-0.1.2.tar.gz
+      - name: Upload pre-built package archive
+        uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392 # v4.0.0
+        with:
+          name: package-archive
+          path: output/*.tar.gz
+
   publish:
+    needs: [build]
     uses: dart-lang/ecosystem/.github/workflows/publish.yaml@publish-provenance-support
     with:
       provenance: true
+      use-prebuilt-archive: true
       firehose_ref: publish-provenance-support
     permissions:
       id-token: write
