@@ -36,7 +36,6 @@ jobs:
     with:
       provenance: true
       use-prebuilt-archive: true
-      firehose_ref: publish-provenance-support
     permissions:
       id-token: write
       pull-requests: write
